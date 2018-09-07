@@ -23,6 +23,7 @@
     },
     "dependencies": {
         "ajv": "^6.5.3",
-        "img-loader": "^3.0.0"
+        "img-loader": "^3.0.0",
+        "react-router-dom": "^4.3.1"
     }
 }
