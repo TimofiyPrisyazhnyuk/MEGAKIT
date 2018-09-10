@@ -1,1 +1,1 @@
-import React, {Component} from 'react';export default class Update extends Component {    render() {        return (            <Update>READ</Update>        );    }}
+import React, {Component} from 'react';export default class Update extends Component {    render() {        return (            <div>                this is update            </div>        );    }}

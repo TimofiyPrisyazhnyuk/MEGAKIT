@@ -1,1 +1,1 @@
-import React, {Component} from 'react';// import Index from './Index';export default class Home extends Component {    render() {        return (            <div>This is Home</div>        );    }}
+import React, {Component} from 'react';export default class Home extends Component {    render() {        return (            <div>             This is Home            </div>        );    }}

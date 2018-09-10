@@ -1,1 +1,1 @@
-import React, {Component} from 'react';export default class Delete extends Component {    render() {        return (            <Delete>READ</Delete>        );    }}
+import React, {Component} from 'react';export default class Delete extends Component {    render() {        return (           <div>This is Delete</div>        );    }}
