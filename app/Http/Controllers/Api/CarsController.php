@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Car;
+use App\Http\Requests\CarRequest;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -15,7 +17,9 @@ class CarsController extends Controller
      */
     public function index()
     {
-        return Car::with('user')->get();
+        return response()->json(
+            Car::with('user')->paginate(10)
+        );
     }
 
     /**
@@ -31,18 +35,44 @@ class CarsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param CarRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CarRequest $request)
     {
-        //
+        if ($request->json()) {
+            $newCar = Car::create($request->except(['errors', 'users']));
+            if ($newCar) {
+
+                return response()->json([
+                    'success' => 'New Car created'
+                ]);
+            }
+            return response()->json([
+                'warning' => 'Warning create new Car'
+            ]);
+        }
+        return abort(403);
+
+    }
+
+    /**
+     * Get all users
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getUsers(Request $request)
+    {
+        if ($request->json()) {
+            return response()->json(User::all());
+        }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -51,36 +81,53 @@ class CarsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Get car and return with user json
      *
-     * @param  int  $id
+     * @param Car $car
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Car $car)
     {
-        //
+        return response()->json([
+            Car::with('user')
+                ->where('id', $car->id)->first(),
+            User::all()
+        ]);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update Car in db.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param CarRequest $request
+     * @param Car $car
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CarRequest $request, Car $car)
     {
-        //
+        if ($car->update($request->except('users', 'errors'))) {
+
+            return response()->json([
+                'success' => 'Car updated successfully'
+            ]);
+        }
+        return abort(403);
+
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove Car from db.
      *
-     * @param  int  $id
+     * @param Car $car
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Car $car)
     {
-        //
+        if ($car->delete()) {
+
+            return response()->json([
+                'success' => 'Car deleted successfully'
+            ]);
+        }
     }
 }

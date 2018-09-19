@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/{patch}', function () {
     return view('welcome');
-});
+})->where('patch', '.*');

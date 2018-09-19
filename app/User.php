@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -29,6 +30,18 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+
+    /**
+     * Automatic hash password during create new user
+     *
+     * @param $pass
+     */
+    public function setPasswordAttribute($pass){
+
+        $this->attributes['password'] = Hash::make($pass);
+
+    }
 
     /**
      * Relations to table cars

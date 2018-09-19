@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Car;
 use App\Http\Requests\UserRequest;
 use App\User;
 use Illuminate\Http\Request;
@@ -9,6 +10,7 @@ use App\Http\Controllers\Controller;
 
 class UsersController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -16,23 +18,37 @@ class UsersController extends Controller
      */
     public function index()
     {
-        return User::with('cars')->get();
+        return response()->json(
+            User::with('cars')->paginate(10)
+        );
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @param Request $request
+     * @param UserRequest $request
      * @return \Illuminate\Http\Response
      */
 //    public function create(Request $request)
 //    {
 //        return response()->json(['create','user']);
 //    }
-    public function saveNewUser(Request $request)
+
+
+    /**
+     * @param UserRequest $request
+     * @return \Illuminate\Http\JsonResponse|void
+     */
+    public function saveNewUser(UserRequest $request)
     {
         if ($request->json()) {
-            return response()->json($request->all(  ));
+            $newUser = User::create($request->except(['confirmation', 'errors']));
+            if ($newUser) {
+
+                return response()->json([
+                    'success' => 'New User created successfully'
+                ]);
+            }
         }
         return abort(403);
     }
@@ -63,36 +79,55 @@ class UsersController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Get User from db and return them and cars
      *
-     * @param  int $id
+     * @param User $user
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        return response()->json(
+            User::with('cars')
+                ->where('id', $user->id)->first()
+        );
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update User in db.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param UserRequest $request
+     * @param User $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, User $user)
     {
-        //
+        if ($user->update($request->except('confirmation', 'errors', 'id'))) {
+
+            return response()->json([
+                'success' => 'User updated successfully'
+            ]);
+        }
+        return abort(403);
+
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove User from db.
      *
-     * @param  int $id
+     * @param User $user
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        if ($user) {
+            Car::where('user_id', $user->id)->delete();
+            $user->delete();
+
+            return response()->json([
+                'success' => 'User deleted successfully'
+            ]);
+        }
+        return abort(403);
     }
 }

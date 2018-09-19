@@ -2,11 +2,10 @@
 
 namespace App\Http\Requests;
 
-use App\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserRequest extends FormRequest
+class CarRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,10 +25,9 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|min:3|max:27',
-            'email' => 'required|string|email|max:255|unique:users,email,'.$this->get('id'),
-            'password' => 'required|string|min:6|max:27',
-            'confirmation' => 'required_with:password|same:password|min:6|max:27',
+            'make' => 'required|string|min:3|max:21',
+            'model' => 'required|string|min:3|max:21',
+            'user_id' => 'required|integer',
         ];
     }
 
