@@ -61913,10 +61913,10 @@ var Listing = function (_Component) {
         this.state.alert_message.length > 0 ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__messages_success__["a" /* default */], { message: this.state.alert_message }) : null,
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'table',
-          { className: 'table table-bordered text-center' },
+          { className: 'table table-bordered text-center table-responsive-sm' },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'thead',
-            { className: 'thead-dark' },
+            { className: 'thead-dark text-nowrap' },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'tr',
               null,
@@ -61992,21 +61992,25 @@ var Listing = function (_Component) {
                   'td',
                   null,
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    __WEBPACK_IMPORTED_MODULE_3_react_router_dom__["b" /* Link */],
-                    { className: 'btn btn-outline-info btn-sm', to: '/users/read/' + user.id },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'far fa-eye fa-2x' })
-                  ),
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    __WEBPACK_IMPORTED_MODULE_3_react_router_dom__["b" /* Link */],
-                    { className: 'btn btn-outline-secondary btn-sm',
-                      to: '/users/edit/' + user.id },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-edit fa-2x' })
-                  ),
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'a',
-                    { href: '#', onClick: _this5.deleteUser.bind(_this5, user.id),
-                      className: 'btn btn btn-outline-danger btn-sm' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-trash-alt fa-2x' })
+                    'div',
+                    { className: 'btn-group btn-group-sm', role: 'group', 'aria-label': '' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                      __WEBPACK_IMPORTED_MODULE_3_react_router_dom__["b" /* Link */],
+                      { className: 'btn btn-outline-info btn-sm', to: '/users/read/' + user.id },
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'far fa-eye fa-2x' })
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                      __WEBPACK_IMPORTED_MODULE_3_react_router_dom__["b" /* Link */],
+                      { className: 'btn btn-outline-secondary btn-sm',
+                        to: '/users/edit/' + user.id },
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-edit fa-2x' })
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                      'a',
+                      { href: '#', onClick: _this5.deleteUser.bind(_this5, user.id),
+                        className: 'btn btn btn-outline-danger btn-sm' },
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-trash-alt fa-2x' })
+                    )
                   )
                 )
               );
@@ -62527,10 +62531,10 @@ var Listing = function (_Component) {
         this.state.alert_message.length > 0 ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__messages_success__["a" /* default */], { message: this.state.alert_message }) : null,
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'table',
-          { className: 'table table-bordered text-center' },
+          { className: 'table table-bordered text-center table-responsive-sm' },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'thead',
-            { className: 'thead-dark' },
+            { className: 'thead-dark text-nowrap' },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'tr',
               null,
@@ -62592,20 +62596,25 @@ var Listing = function (_Component) {
                   'td',
                   null,
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    __WEBPACK_IMPORTED_MODULE_3_react_router_dom__["b" /* Link */],
-                    { className: 'btn btn-outline-info btn-sm', to: '/cars/read/' + car.id },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'far fa-eye fa-2x' })
-                  ),
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    __WEBPACK_IMPORTED_MODULE_3_react_router_dom__["b" /* Link */],
-                    { className: 'btn btn-outline-secondary btn-sm', to: '/cars/edit/' + car.id },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-edit fa-2x' })
-                  ),
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'a',
-                    { href: '#', onClick: _this5.deleteCar.bind(_this5, car.id),
-                      className: 'btn btn btn-outline-danger btn-sm' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-trash-alt fa-2x' })
+                    'div',
+                    { className: 'btn-group btn-group-sm', role: 'group', 'aria-label': '' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                      __WEBPACK_IMPORTED_MODULE_3_react_router_dom__["b" /* Link */],
+                      { className: 'btn btn-outline-info btn-sm', to: '/cars/read/' + car.id },
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'far fa-eye fa-2x' })
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                      __WEBPACK_IMPORTED_MODULE_3_react_router_dom__["b" /* Link */],
+                      { className: 'btn btn-outline-secondary btn-sm',
+                        to: '/cars/edit/' + car.id },
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-edit fa-2x' })
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                      'a',
+                      { href: '#', onClick: _this5.deleteCar.bind(_this5, car.id),
+                        className: 'btn btn btn-outline-danger btn-sm' },
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-trash-alt fa-2x' })
+                    )
                   )
                 )
               );
